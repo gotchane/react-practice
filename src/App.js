@@ -6,15 +6,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      power: false
+      power: false,
+      subject: ''
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick() {
     this.setState({
         power: !this.state.power
     })
+  }
+
+  handleChange(event) {
+    this.setState({subject: event.target.value});
   }
 
   render() {
@@ -27,8 +33,14 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+
+        <h2>Click Event Sample</h2>
         <button onClick={this.handleClick}>Button</button>
         <p>POWER is {this.state.power ? 'ON' : 'OFF' }!</p>
+
+        <h2>Input Event Sample</h2>
+        <input type='text' value={this.state.subject} onChange={this.handleChange} />
+        <p>{this.state.subject}</p>
       </div>
     );
   }
